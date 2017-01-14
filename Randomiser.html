@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta charset="UTF-8">
+  <title>Randomiser for game</title>
+  <link href="https://bootswatch.com/darkly/bootstrap.min.css" rel="stylesheet">
+  <style>
+    #list li {
+      margin:20px;
+    }
+    .mobileHoverFix:hover,
+    .mobileHoverFix.hover{
+      background-position: 0 0px;
+    }
+    .btn:focus {
+      outline: none;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="container">
+    <ol id="list" style="margin-top:10px;" contenteditable="true">
+      <li>手上有波企中心，一齊整爆个波，最快先揀礼物，個個都有。然後領唱一首聖誕歌</li>
+      <li>揀一件礼物送在圈的朋友/弟妹。再由收礼者揀礼物送回</li>
+      <li>扮一种動物叫声</li>
+      <li>猜拳，勝者選1礼物送敗者，再敗者将礼物轉送圈子的朋友。最後，有波的都可選礼物</li>
+      <li>整x波，最快者決定一首聖誕歌，其他伴舞，由外圍選最好者可先選礼物。(以掌声決定勝者)</li>
+    </ol>
+
+    <hr>
+    <center>
+
+      <button id="btn" class="mobileHoverFix btn btn-success btn-lg"> Pick One</button>
+    </center>
+  </div>
+
+  <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+
+  <script>
+    $(document).ready(function(){
+      $('#list li').addClass("text-muted");
+
+      var number = 1 + Math.floor(Math.random() * 6);
+
+      var list = $('#list');
+
+      $('#btn').on('click',function(){
+        var length = $('#list li').length;
+        console.log(length);
+        var n = getRandomInt(1,length);
+        $('#list li').addClass("text-muted");
+        $('#list li:nth-child('+n+')').removeClass("text-muted");
+      // $('#list li:nth-child('+n+')').addClass('text-danger');
+    });
+
+
+      $("button").on("touchstart", function(){ 
+        $(this).removeClass("mobileHoverFix");
+      });
+      $("button").on("touchend", function(){ 
+        $(this).addClass("mobileHoverFix");
+      });
+    // console.log(getRandomInt(0,10));
+
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+  });
+</script>
+
+
+</body>
+
+</html>
